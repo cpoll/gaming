@@ -1,18 +1,19 @@
 '''
 Solver for the tombstone puzzle in 13th Doll in the dining room (also 7th Guest)
 
-Useful discoveries:
-1. The tombstones can be represented as a 2D mask. The mask toggles every tombstone. The position
-of the tombstone doesn't need to be recorded directly, that's captured in its mask (it has a 1 at
-its own coordinate).
+Useful discovery: The tombstones can be represented as a 2D mask. The mask toggles every tombstone.
+The position of the tombstone doesn't need to be recorded directly, that's captured in its mask
+(it has a 1 at its own coordinate).
 
 From this we come to more conclusions.
-- A tombstone will only need to be pressed once. Pressing it twice (with any number of ops in between)
-    is a no-op, because we're applying the toggle mask twice.
+- A tombstone will only need to be pressed once. Pressing it twice (with any number of ops in
+    between) is a no-op, because we're applying the toggle mask twice.
 - Order doesn't matter.
 
-So the obvious solution is just BFS/DFS. In this case we'll be lazy and use itertools, we don't need
-to worry about efficiency too much
+The easiest solution is to try every combination. Since order doesn't matter, we don't need BFS/DFS
+or any performance optimization. For example, 12 choose 6 = 924, so we won't need to test more than
+10k combinations (sum of 12 choose n for n in 1..12).
+Itertools.combination solves this easily.
 '''
 
 import math
