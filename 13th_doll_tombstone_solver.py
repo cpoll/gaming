@@ -76,4 +76,4 @@ if __name__ == '__main__':
         '000,001,111,111',
     ]
 
-    print(get_tombstones_to_click(INITIAL_STATE, TOMBSTONES))
+    print('\033[92m' + str(get_tombstones_to_click(INITIAL_STATE, TOMBSTONES))+'\033[0m')
