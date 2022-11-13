@@ -53,6 +53,13 @@ def check_solution(initial_state, tombstones):
     return math.log(state+1, 2).is_integer()
 
 
+def pretty_print_tombstones(tombstones):
+
+    for tombstone in tombstones:
+        tombstone = '|' + tombstone.replace(',', '\n|').replace('0', ' ').replace('1', '█')
+        print('├───')
+        print(tombstone)
+
 
 if __name__ == '__main__':
     # Test checker
@@ -76,4 +83,9 @@ if __name__ == '__main__':
         '000,001,111,111',
     ]
 
-    print('\033[92m' + str(get_tombstones_to_click(INITIAL_STATE, TOMBSTONES))+'\033[0m')
+    tombstones_to_click = get_tombstones_to_click(INITIAL_STATE, TOMBSTONES)
+    print('\033[92m' + str(tombstones_to_click)+'\033[0m')
+
+    for tombstone_set in tombstones_to_click:
+        pretty_print_tombstones(tombstone_set)
+        print('╘═══')
